@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Taschengeldbörse</string>
+    <string name="grant_location_permission">Keine Location-Berechtigung vergeben</string>
+    <string name="duration_format">ca. %1$d Minuten</string>
+    <string name="duration_format_edit">%1$d min</string>
+    <string name="due_date_format">bis zum %1$s</string>
+    <string name="distance_format_meters">%1$d m</string>
+    <string name="distance_format_kilometers">%1$d km</string>
+    <string name="confirm_task">Auftrag übernehmen</string>
+    <string name="profile">Profil</string>
+    <string name="company">Begleithilfe</string>
+    <string name="shopping">Einkaufen</string>
+    <string name="garden">Gartenarbeit</string>
+    <string name="home">Haushalt</string>
+    <string name="pets">Haustiere</string>
+    <string name="technology">Technik</string>
+    <string name="misc">Sonstiges</string>
+    <string name="add_task_title">Hilfe anfragen</string>
+    <string name="category">Kategorie</string>
+    <string name="what_to_do">Was soll gemacht werden?</string>
+    <string name="please_insert">Bitte eintragen</string>
+    <string name="more">Weitere Angaben</string>
+    <string name="please_insert_optional">Bitte eintragen (optional)</string>
+    <string name="estimated_duration">Geschätzte Dauer</string>
+    <string name="add_task">Auftrag erstellen</string>
+    <string name="choose_category">Kategorie auswählen</string>
+    <string name="minus">–</string>
+    <string name="plus">+</string>
+    <string name="due_date">Zu erledigen bis</string>
+    <string name="task_confirmed">Aufgabe übernommen</string>
+</resources>

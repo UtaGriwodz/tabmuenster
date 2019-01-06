@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_task_title"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/black87"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/textViewCategory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/category"
+                android:textAppearance="@style/Text24Regular"
+                android:textColor="@color/black54"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:elevation="2dp"
+                android:padding="12dp"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/black87"
+                app:chipBackgroundColor="@color/white"
+                app:chipCornerRadius="24dp"
+                app:chipEndPadding="20dp"
+                app:chipStartPadding="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewCategory"
+                tools:chipIcon="@drawable/ic_spa_active"
+                tools:text="@string/garden"/>
+
+            <TextView
+                android:id="@+id/textViewWhatToDo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/what_to_do"
+                android:textAppearance="@style/Text24Regular"
+                android:textColor="@color/black54"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chipCategory"/>
+
+            <EditText
+                android:id="@+id/editTextWhatToDo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/please_insert"
+                android:importantForAutofill="no"
+                android:inputType="textCapSentences"
+                android:padding="16dp"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/black87"
+                android:textColorHint="@color/black18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewWhatToDo"
+                tools:targetApi="o"
+                tools:text="Ich brauche Hilfe beim"/>
+
+            <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/more"
+                android:textAppearance="@style/Text24Regular"
+                android:textColor="@color/black54"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextWhatToDo"/>
+
+            <EditText
+                android:id="@+id/editTextDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/please_insert_optional"
+                android:importantForAutofill="no"
+                android:inputType="textCapSentences"
+                android:padding="16dp"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/black87"
+                android:textColorHint="@color/black18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDescription"
+                tools:targetApi="o"/>
+
+            <TextView
+                android:id="@+id/textViewDuration"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/estimated_duration"
+                android:textAppearance="@style/Text24Regular"
+                android:textColor="@color/black54"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextDescription"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonMinusDuration"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/minus"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/buttonColor"
+                app:cornerRadius="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDuration"/>
+
+            <TextView
+                android:id="@+id/textViewDurationValue"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/black87"
+                app:layout_constraintBottom_toBottomOf="@id/buttonMinusDuration"
+                app:layout_constraintStart_toEndOf="@id/buttonMinusDuration"
+                app:layout_constraintTop_toTopOf="@id/buttonMinusDuration"
+                tools:text="30 min"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonPlusDuration"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:text="@string/plus"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/buttonColor"
+                app:cornerRadius="2dp"
+                app:layout_constraintBottom_toBottomOf="@id/buttonMinusDuration"
+                app:layout_constraintStart_toEndOf="@id/textViewDurationValue"
+                app:layout_constraintTop_toTopOf="@id/buttonMinusDuration"/>
+
+            <TextView
+                android:id="@+id/textViewDueDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/due_date"
+                android:textAppearance="@style/Text24Regular"
+                android:textColor="@color/black54"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonMinusDuration"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonMinusDueDate"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/minus"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/buttonColor"
+                app:cornerRadius="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDueDate"/>
+
+            <TextView
+                android:id="@+id/textViewDueDateValue"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/black87"
+                app:layout_constraintBottom_toBottomOf="@id/buttonMinusDueDate"
+                app:layout_constraintStart_toEndOf="@id/buttonMinusDueDate"
+                app:layout_constraintTop_toTopOf="@id/buttonMinusDueDate"
+                tools:text="10.10.2018"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonPlusDueDate"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:text="@string/plus"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/buttonColor"
+                app:cornerRadius="2dp"
+                app:layout_constraintBottom_toBottomOf="@id/buttonMinusDueDate"
+                app:layout_constraintStart_toEndOf="@id/textViewDueDateValue"
+                app:layout_constraintTop_toTopOf="@id/buttonMinusDueDate"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonConfirm"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:text="@string/add_task"
+                android:textAppearance="@style/Text14MediumUppercase"
+                app:cornerRadius="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonMinusDueDate"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
