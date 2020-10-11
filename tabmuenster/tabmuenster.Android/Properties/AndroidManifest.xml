@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="3.0" package="com.companyname.tabmuenster" android:installLocation="preferExternal" android:versionCode="3">
-	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="27" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="5.0" package="com.companyname.tabmuenster" android:installLocation="preferExternal" android:versionCode="5">
+	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="30" />
 	<application android:label="tabmuenster.Android" android:icon="@mipmap/ic_launcher"></application>
 </manifest>
