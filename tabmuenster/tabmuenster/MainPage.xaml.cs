@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using System.IO;
@@ -46,6 +47,8 @@ namespace tabmuenster
         public ObservableCollection<Aufgabe> aufgaben { get; set; }
 
         public Aufgabe selektierteAufgabe;
+
+
 
         public string ConvertF1_to_Kategorie(string f1)
         {
@@ -178,7 +181,24 @@ namespace tabmuenster
 
         }
 
-        void OnSelection(object sender, SelectedItemChangedEventArgs e)
+        private void ButtonTap2Clicked(object sender)
+        {
+            //Aufgabe test = new Object e.Item;
+
+            // DisplayAlert("Item Tapped", e.Item.ToString(), "Ok");
+
+            if (selektierteAufgabe == null)
+            {
+                DisplayAlert("Keine Aufgabe ausgewählt", "Bitte wähle eine Aufgabe aus, die du ganz angezeigt bekommen möchstest.", "Ok");
+            }
+            else
+            {
+                DisplayAlert("Aufgabe:", selektierteAufgabe.Aufgabenbeschreibung, "Ok");
+
+            }
+        }
+
+            void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
             {
@@ -196,7 +216,25 @@ namespace tabmuenster
                 return;
             }
             // Following line used to display given phone number in dialer  
-            Device.OpenUri(new Uri(String.Format("tel:{0}", phoneNumber)));
+          //  Device.OpenUri(new Uri(String.Format("tel:{0}", phoneNumber)));
+
+
+            try
+            {
+                Device.OpenUri(new Uri(String.Format("tel:{0}", phoneNumber)));
+                //var message = new SmsMessage(smsText, new[] { smsPhoneNumber });
+                //Sms.ComposeAsync(message);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                DisplayAlert("Fehlgeschlagen", "Die Funktion steht auf diesem Gerät nicht zur Verfügung.", "OK");
+                // Sms is not supported on this device.
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Fehlgeschlagen", ex.Message, "OK");
+                // Other error has occurred.
+            }
         }
 
         private void ButtonSMSClicked(object sender)
@@ -218,15 +256,32 @@ namespace tabmuenster
                 {
                     return;
                 }
+
+                try
+                {
+                    var message = new SmsMessage(smsText, new[] { smsPhoneNumber });
+                    Sms.ComposeAsync(message);
+                }
+                catch (FeatureNotSupportedException ex)
+                {
+                    DisplayAlert("Fehlgeschlagen", "Die Funktion steht auf diesem Gerät nicht zur Verfügung.", "OK");
+                    // Sms is not supported on this device.
+                }
+                catch (Exception ex)
+                {
+                    DisplayAlert("Fehlgeschlagen", ex.Message, "OK");
+                    // Other error has occurred.
+                }
+
                 // Following line used to open Messages app and populate below given details  
-                if (Device.RuntimePlatform == Device.iOS)
+              /*  if (Device.RuntimePlatform == Device.iOS)
                 {
                     Device.OpenUri(new Uri(String.Format("sms:{0}&body={1}", smsPhoneNumber, smsText)));
                 }
                 else if (Device.RuntimePlatform == Device.Android)
                 {
                     Device.OpenUri(new Uri(String.Format("sms:{0}?body={1}", smsPhoneNumber, smsText)));
-                }
+                }*/
             }
         }
 
@@ -249,7 +304,32 @@ namespace tabmuenster
                 {
                     return;
                 }
-                Device.OpenUri(new Uri(String.Format("mailto:{0}?subject={1}&body={2}", toEmail, emailSubject, emailBody)));
+
+                try
+                {
+                    var message = new EmailMessage
+                    {
+                        Subject = emailSubject,
+                        Body = emailBody,
+                        To = { toEmail },
+                    };
+                        //Cc = ccRecipients,
+                        //Bcc = bccRecipients
+                    
+                    Email.ComposeAsync(message);
+                 
+                }
+                catch (FeatureNotSupportedException ex)
+                {
+                    DisplayAlert("Fehlgeschlagen", "Die Funktion steht auf diesem Gerät nicht zur Verfügung.", "OK");
+                    // Sms is not supported on this device.
+                }
+                catch (Exception ex)
+                {
+                    DisplayAlert("Fehlgeschlagen", ex.Message, "OK");
+                    // Other error has occurred.
+                }
+               // Device.OpenUri(new Uri(String.Format("mailto:{0}?subject={1}&body={2}", toEmail, emailSubject, emailBody)));
             }
         }
 
@@ -394,8 +474,11 @@ Environment.NewLine +
                         lstView.ItemSelected += OnSelection;
                         this.Title = "Aufgaben der Taschengeldbörse Münster";
                         lstView.ItemTemplate = new DataTemplate(typeof(CustomAufgabeCell));
-                     
-                      
+
+                        var tap2 = new TapGestureRecognizer();
+                        tap2.NumberOfTapsRequired = 2;
+                        tap2.Command = new Command(ButtonTap2Clicked);
+                        lstView.GestureRecognizers.Add(tap2);
 
                         int i = 0;
                         do
@@ -499,7 +582,7 @@ Environment.NewLine +
                 var QuartierLabel = new Label();
                 var AufgabenbeschreibungLabel = new Label();
                 var verticaLayout = new StackLayout();
-                var horizontalLayout = new StackLayout() { BackgroundColor = Color.White, Margin = new Thickness(2) };
+                var horizontalLayout = new StackLayout() { BackgroundColor = Color.White, Margin = new Thickness(2) ,IsClippedToBounds=true};
 
              //   var layout1 = new StackLayout { Padding = new Thickness(5, 10) };
 
