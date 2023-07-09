@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net;
+//using Java.Lang;
 
 namespace tabmuenster
 {
@@ -221,13 +222,35 @@ namespace tabmuenster
 
             try
             {
-                Device.OpenUri(new Uri(String.Format("tel:{0}", phoneNumber)));
+               // Device.OpenUri(new Uri(String.Format("tel:{0}", phoneNumber)));
+
+                try
+                {
+                    PhoneDialer.Open(phoneNumber);
+                }
+                catch (ArgumentNullException anEx)
+                {
+                    DisplayAlert("Die Telefonnummer fehlt",anEx.Message, "OK");
+                    // Number was null or white space
+                }
+                catch (FeatureNotSupportedException ex)
+                {
+                    DisplayAlert("Fehlgeschlagen", ex.Message, "OK");
+                    // Phone Dialer is not supported on this device.
+                }
+                catch (Exception ex)
+                {
+                    DisplayAlert("Fehlgeschlagen", ex.Message, "OK");
+                    // Other error has occurred.
+                }
+
                 //var message = new SmsMessage(smsText, new[] { smsPhoneNumber });
                 //Sms.ComposeAsync(message);
             }
             catch (FeatureNotSupportedException ex)
             {
-                DisplayAlert("Fehlgeschlagen", "Die Funktion steht auf diesem Gerät nicht zur Verfügung.", "OK");
+                DisplayAlert("Fehlgeschlagen", ex.Message, "OK");
+               // DisplayAlert("Fehlgeschlagen", "Die Funktion steht auf diesem Gerät nicht zur Verfügung.", "OK");
                 // Sms is not supported on this device.
             }
             catch (Exception ex)
@@ -264,7 +287,8 @@ namespace tabmuenster
                 }
                 catch (FeatureNotSupportedException ex)
                 {
-                    DisplayAlert("Fehlgeschlagen", "Die Funktion steht auf diesem Gerät nicht zur Verfügung.", "OK");
+                    DisplayAlert("Fehlgeschlagen", ex.Message, "OK");
+                  //  DisplayAlert("Fehlgeschlagen", "Die Funktion steht auf diesem Gerät nicht zur Verfügung.", "OK");
                     // Sms is not supported on this device.
                 }
                 catch (Exception ex)
@@ -321,7 +345,8 @@ namespace tabmuenster
                 }
                 catch (FeatureNotSupportedException ex)
                 {
-                    DisplayAlert("Fehlgeschlagen", "Die Funktion steht auf diesem Gerät nicht zur Verfügung.", "OK");
+                    DisplayAlert("Fehlgeschlagen", ex.Message, "OK");
+                   // DisplayAlert("Fehlgeschlagen", "Die Funktion steht auf diesem Gerät nicht zur Verfügung.", "OK");
                     // Sms is not supported on this device.
                 }
                 catch (Exception ex)
@@ -339,6 +364,11 @@ namespace tabmuenster
 
             string ein_text = "Die Taschengeldbörse Münster – ein Gewinn für Jung und Alt" + Environment.NewLine +
                  Environment.NewLine +
+                "Bevor du eine Aufgabe übernehmen kannst, melde dich bei der Taschengeldbörse an unter:" + Environment.NewLine +
+"https://www.taschengeldboerse-muenster.de/de/jugendliche/anmeldung/" + Environment.NewLine +
+"Wenn du Fragen hast, rufe uns unter der Telefonnummer 02 51 14 91 77 52 (immer die ganze Nummer wählen und außerhalb der Sprechstunde gerne auf den AB sprechen.)"
++ Environment.NewLine + Environment.NewLine +
+
 "Ältere Menschen benötigen bei einfachen, ungefährlichen, haushaltsnahen Tätigkeiten gelegentlich Unterstützung zu kleinem Preis." + Environment.NewLine +
 "Jugendliche suchen Möglichkeiten unkompliziert und ohne dauerhafte Verpflichtung ihr Taschengeld aufzubessern, um sich den einen oder anderen Wunsch erfüllen zu können." + Environment.NewLine +
 "Die Taschengeldbörse Münster bringt Jung und Alt zusammen und bietet Jugendlichen und Seniorinnen und Senioren eine gemeinsame Plattform und Vermittlungsstelle." + Environment.NewLine +
@@ -355,9 +385,10 @@ namespace tabmuenster
 "    schreib uns eine E - Mail an tab@muenster.de" + Environment.NewLine +
 "Wir melden uns daraufhin schnellstmöglich bei dir." + Environment.NewLine +
 Environment.NewLine +
-"Beachte: Sollten sich mehrere Jugendliche auf einen offenen Aufgaben melden, dann gilt das Prinzip 'wer zuerst kommt, mahlt zuerst', wobei wir natürlich darauf achten die Aufgaben gerecht unter euch zu verteilen." + Environment.NewLine +
-Environment.NewLine +
-"https://www.taschengeldboerse-muenster.de";
+"https://www.taschengeldboerse-muenster.de"+ Environment.NewLine +
+
+"Datenschutzerklärung siehe: https://www.taschengeldboerse-muenster.de/de/datenschutzerklaerung/"
+            ;
   
             DisplayAlert("Information zur Taschengeldbörse Münster", ein_text, "Ok");
       
@@ -378,7 +409,9 @@ Environment.NewLine +
             Environment.NewLine +
             "Einige Icons der App sind von: https://icons8.de" +
              Environment.NewLine +
-                 "Die Grundlagen zu dieser App stammen vom  Münsterhack 2018: https://www.muensterhack.de/";
+                 "Die Grundlagen zu dieser App stammen vom  Münsterhack 2018: https://www.muensterhack.de/" + Environment.NewLine +
+
+"Datenschutzerklärung siehe: https://www.taschengeldboerse-muenster.de/de/datenschutzerklaerung/";
 
             DisplayAlert("Information zur Taschengeldbörse Münster", ein_text, "Ok");
 
