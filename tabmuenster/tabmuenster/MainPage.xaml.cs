@@ -9,10 +9,14 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net;
-//using Java.Lang;
+
 
 namespace tabmuenster
 {
+
+   
+
+
     public class Task
     {
         public string UNID { get; set; }
@@ -380,8 +384,6 @@ namespace tabmuenster
 "Dann" + Environment.NewLine +
 "    ruf uns an 0251 / 14917752 (immer mit Vorwahl wählen und außerhalb der Sprechstunde gerne auf den AB sprechen)" + Environment.NewLine +
 "    oder" + Environment.NewLine +
-"    schreib uns eine SMS an 0176 / 20985995" + Environment.NewLine +
-"    oder" + Environment.NewLine +
 "    schreib uns eine E - Mail an tab@muenster.de" + Environment.NewLine +
 "Wir melden uns daraufhin schnellstmöglich bei dir." + Environment.NewLine +
 Environment.NewLine +
@@ -417,10 +419,18 @@ Environment.NewLine +
 
         }
 
+
+        
+
+
+
+
         public MainPage()
         {
             InitializeComponent();
 
+
+         
             try
             {
                 string url = "https://cloud-11.datenbanken24.de/apps/tab/public.nsf/mobileRequest?openagent&callback=db24&FN=F3";
@@ -578,7 +588,7 @@ Environment.NewLine +
                         horizontalLayout.HorizontalOptions = LayoutOptions.Center;
                         horizontalLayout.Children.Add(MailImageButton);
                         horizontalLayout.Children.Add(CallImageButton);
-                        horizontalLayout.Children.Add(SMSImageButton);
+                      //  horizontalLayout.Children.Add(SMSImageButton);
                         horizontalLayout.Children.Add(InfoImageButton);
                         layout1.Children.Add(horizontalLayout);
 
@@ -651,9 +661,12 @@ Environment.NewLine +
 
             }
 
+
            
 
         }
 
+        }
+
      }
- }
+ 
