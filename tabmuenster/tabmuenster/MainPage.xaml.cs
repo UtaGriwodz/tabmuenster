@@ -20,7 +20,7 @@ namespace tabmuenster
     public class Task
     {
         public string UNID { get; set; }
-        public string ID { get; set; }
+        public string F14 { get; set; }
         public string F7 { get; set; }
         public string F1 { get; set; }
         public string F3 { get; set; }
@@ -45,6 +45,7 @@ namespace tabmuenster
         public string Kategorie { get; set; }
         public string Aufgabenbeschreibung { get; set; }
         public string Kategoriebild { get; set; }
+        public string MyID { get; set; }
     }
 
     public partial class MainPage : ContentPage
@@ -114,11 +115,22 @@ namespace tabmuenster
                 return "ic_add.png";
         }
 
+        public string ConvertF14_to_MyID(string f14)
+        {
+           
+            return f14;
+        }
+
+
+
+
         public string ConvertF7_to_Quartier(string f7)
         {
+            return f7;
+            /*
             switch (f7)
             {
-
+               
                 // ALbachten, Angelmodde, Amelsbüren, Berg Fidel, Coerde, Gievenbeck, Gremmendorf, Handorf, Hiltrup, 
                 //Innenstadt, Kinderhaus, Mauritz, Mecklenbeck, Nienberge, Roxel, Rumphorst, Sentruper Höhe, Südviertel, Wolbeck
                 case "1":
@@ -161,6 +173,7 @@ namespace tabmuenster
                     return "Wolbeck";
             }
             return "keine Quartier gefunden (Mappingliste unvollständig)";
+            */
         }
 
         public int CountChar(string s, char search)
@@ -274,7 +287,7 @@ namespace tabmuenster
             {
                 string smsPhoneNumber = "017620985995"; 
                 string smsText = "Ich habe Interesse, die Aufgabe '" + selektierteAufgabe.Aufgabenbeschreibung +
-                       "' aus der Kategorie '" + selektierteAufgabe.Kategorie + "' zu übernehmen." +
+                       "' aus der Kategorie '" + selektierteAufgabe.Kategorie + "' zu übernehmen." + "(" + selektierteAufgabe.MyID + ")" +
                        Environment.NewLine + "Mein Name: " +
                        Environment.NewLine + "Meine Telefonnummer: " +
                        Environment.NewLine + "Meine Email-Adresse: ";
@@ -324,7 +337,7 @@ namespace tabmuenster
                 string toEmail = "tab@muenster.de"; 
                 string emailSubject = "Interesse an: " + selektierteAufgabe.Aufgabenbeschreibung; 
                 string emailBody = "Ich habe Interesse, die Aufgabe '" + selektierteAufgabe.Aufgabenbeschreibung + 
-                       "' aus der Kategorie '" + selektierteAufgabe.Kategorie + "' zu übernehmen." +
+                       "' aus der Kategorie '" + selektierteAufgabe.Kategorie + "' zu übernehmen " + "(" + selektierteAufgabe.MyID + ".)" +
                        Environment.NewLine + "Mein Name: " +
                        Environment.NewLine + "Meine Telefonnummer: " +
                        Environment.NewLine + "Meine Email-Adresse: ";
@@ -461,7 +474,7 @@ Environment.NewLine +
                             string word32 = word22.Replace("\"", "\'");
                             word42 = "{ " + word32 + "}";
                             arrayt[y] = JsonConvert.DeserializeObject<Task>(word42);
-                            arraya[y] = new Aufgabe { Quartier = ConvertF7_to_Quartier(arrayt[y].F7), Kategorie = ConvertF1_to_Kategorie(arrayt[y].F1), Aufgabenbeschreibung = arrayt[y].F3, Kategoriebild = ConvertF1_to_Kategoriebild(arrayt[y].F1) };
+                            arraya[y] = new Aufgabe { Quartier = ConvertF7_to_Quartier(arrayt[y].F7), Kategorie = ConvertF1_to_Kategorie(arrayt[y].F1), Aufgabenbeschreibung = arrayt[y].F3, Kategoriebild = ConvertF1_to_Kategoriebild(arrayt[y].F1), MyID = ConvertF14_to_MyID(arrayt[y].F14) };
                             y++;
                         }
                         while
